@@ -7,26 +7,29 @@ import sys
 from threading import Timer
 from time import sleep
 
-global sample_message = " "
+#global sample_message = " "
 
-t_end = time.time() + 60 * .06
-t_end2 = time.time() + 60 * .0601
-t_end3 = time.time() + 60 * .09
 
-def motorFunc():
+
+
+
+def motorFunc(t_end):
+    print'motor on'
     while time.time() < t_end:
         c.write_tag([('nerfgun_position_fire',0,'BOOL'),('trigger_motor_on',1,'BOOL')])
 
     c.write_tag([('trigger_motor_on',0,'BOOL')])
 
-def fireBullets():
+def fireBullets(t_end2):
+    print'Fire Bullets'
     while time.time() < t_end2:
         c.write_tag([('trigger_bullet_fire',1,'BOOL')])
     c.write_tag([('trigger_bullet_fire',0,'BOOL')])
 
 
-def hideGun():
-    if time.time() > t_end3:
+def hideGun(t_end3):
+    print 'Hide Gun'
+    if time.time() < t_end3:
         c.write_tag(('nerfgun_position_fire',1,'BOOL'))
 
 def userInput(arg):
@@ -34,35 +37,49 @@ def userInput(arg):
         exit(0)
         sleep(1)
 
-def parseMessage(message):
-    sections = message.split(";")
-    Quit = input('Press Q to Quit')
+def parseMessage(message,fp):
+    t_end = time.time() + 60 * .06
+    t_end2 = time.time() + 60 * .08
+    t_end3 = time.time() + 60 * .1
 
-    for section in sections:
-        pair = section.split('=')
+    if "longgun" in message: 
+        motorFunc(t_end)
+        fireBullets(t_end2)
+        hideGun(t_end3)    
+        while "longgun" in message:
+            message = fp.readline()
 
-        if(len(pair) == 2):
-            print(pair[0] + " " + pair[1])
-            if pair[0] is 'obj' and pair[1] is 'longgun':
-                motorFunc()
-                fireBullets()
-                hideGun()
-                continue
-        elif Quit == 'Q': 
-            print 'User quit program'
-            c.write_tag([('nerfgun_position_fire',1,'BOOL'),('trigger_motor_on',0,'BOOL')])
-            c.write_tag([('trigger_bullet_fire',0,'BOOL')])
-            break
-        else:
-            continue
-    sys.exit(0)
+#sections = message.split(";")
+    #Quit = input('Press Q to Quit')
 
-def handleCh(ch):
-    if(ch == '\n'):
-        parseMessage(sample_message)
-        sample_message = ""
-    else:
-        sample_message += ch
+    #for section in sections:
+      #  pair = section.split('=')
+
+       # if(len(pair) == 2):
+           # print(pair[0] + " " + pair[1])
+        #   if pair[0] is 'obj'
+	#	print pair[1] 
+	#	if pair[1] is 'longgun'
+            
+	 #       motorFunc()
+          #      fireBullets()
+           #     hideGun()
+            #    continue
+        #elif Quit == 'Q': 
+         #   print 'User quit program'
+         #   c.write_tag([('nerfgun_position_fire',1,'BOOL'),('trigger_motor_on',0,'BOOL')])
+         #  c.write_tag([('trigger_bullet_fire',0,'BOOL')])
+         # break
+        #else:
+         #   continue
+    #sys.exit(0)
+
+#def handleCh(ch):
+#    if(ch == '\n'):
+#        parseMessage(sample_message)
+#        sample_message = ""
+#    else:
+#        sample_message += ch
 
 def handleInput(incomingMessage):
     for ch in incomingMessage:
@@ -81,15 +98,15 @@ if __name__ == '__main__':
     print c.__version__
 
 
-    filepath = "/home/nvidia/Documents/yolov2/capturedetect''"
+    filepath = "/home/nvidia/Documents/yolov2/capturedetect"
     if c.open('192.168.0.203'):
 
         with open(filepath) as fp:  
-            line = fp.readline()
-            while line:
+            while 1:
+		line = fp.readline()
                 try:
-                    parseMessage(line)
-                    fp.close()
+                    parseMessage(line,fp)
+                   # fp.close()
                 except Exception as e:
                     c.close()
                     print e

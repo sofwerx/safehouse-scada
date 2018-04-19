@@ -7,30 +7,28 @@ import sys
 from threading import Timer
 from time import sleep
 
-#global sample_message = " "
-
-
-
 
 
 def motorFunc(t_end):
     print'motor on'
     while time.time() < t_end:
         c.write_tag([('nerfgun_position_fire',0,'BOOL'),('trigger_motor_on',1,'BOOL')])
-
-    c.write_tag([('trigger_motor_on',0,'BOOL')])
+        #c.write_tag(('trigger_bullet_fire',1,'BOOL'))
+    c.write_tag(('trigger_bullet_fire',1,'BOOL'))
 
 def fireBullets(t_end2):
+    #c.write_tag([('trigger_bullet_fire',1,'BOOL')])
+
     print'Fire Bullets'
     while time.time() < t_end2:
         c.write_tag([('trigger_bullet_fire',1,'BOOL')])
-    c.write_tag([('trigger_bullet_fire',0,'BOOL')])
+    c.write_tag([('trigger_bullet_fire',0,'BOOL'),('trigger_motor_on',0,'BOOL')])
 
 
 def hideGun(t_end3):
     print 'Hide Gun'
-    if time.time() < t_end3:
-        c.write_tag(('nerfgun_position_fire',1,'BOOL'))
+    time.sleep(1)
+    c.write_tag(('nerfgun_position_fire',1,'BOOL'))
 
 def userInput(arg):
     if arg is 'quit':
@@ -38,9 +36,9 @@ def userInput(arg):
         sleep(1)
 
 def parseMessage(message,fp):
-    t_end = time.time() + 60 * .06
-    t_end2 = time.time() + 60 * .08
-    t_end3 = time.time() + 60 * .1
+    t_end = time.time() + 60 * .02
+    t_end2 = time.time() + 60 * .05
+    t_end3 = time.time() + 60 * .16
 
     if "longgun" in message: 
         motorFunc(t_end)

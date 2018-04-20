@@ -37,7 +37,7 @@ def userInput(arg):
 
 def parseMessage(message,fp):
     t_end = time.time() + 60 * .02
-    t_end2 = time.time() + 60 * .05
+    t_end2 = time.time() + 60 * .058
     t_end3 = time.time() + 60 * .16
 
     if "longgun" in message: 

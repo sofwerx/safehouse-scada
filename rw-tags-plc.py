@@ -2,6 +2,7 @@
 from pycomm.ab_comm.clx import Driver as ClxDriver
 import logging
 import time
+import re
 from multiprocessing import Process
 import sys
 from threading import Timer
@@ -54,20 +55,22 @@ if __name__ == '__main__':
 
     c = ClxDriver()
 
-    print c['port']
-    print c.__version__
+    print('PLC Port Number: ' + str(c['port']))
+    print('Driver Version: ' + str( c.__version__))
 
     filepath = "/home/nvidia/Documents/yolov2/capturedetect"
     if c.open('192.168.0.203'):
 
         with open(filepath) as fp:
             while 1:
-                line = fp.readline()
+                
+		line = fp.readline()
                 try:
+                    print(line.rstrip())
                     parse_msg(line,fp)
-                except ValueError as e:
+                except Exception as e:
                     c.close()
-                    print e
-                    pass
+		    fp.close()
+		    pass
 
     c.close()

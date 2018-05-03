@@ -63,14 +63,12 @@ if __name__ == '__main__':
 
         with open(filepath) as fp:
             while 1:
-                
-		line = fp.readline()
+                line = fp.readline()
                 try:
                     print(line.rstrip())
                     parse_msg(line,fp)
                 except Exception as e:
                     c.close()
-		    fp.close()
-		    pass
+                    fp.close()
 
     c.close()

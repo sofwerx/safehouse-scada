@@ -1,4 +1,6 @@
-from PyQt5.QtWidgets import *
+
+# Functions from PyQt5 library for OS windows, main functionality, and gui
+from PyQt5.QtWidgets import QApplication, QLabel, QToolBar
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 

@@ -1,0 +1,5 @@
+Convert .ui to .py using:
+
+pyuic5 input.ui -o output.py
+
+pyuic5 ctrlpanel.ui -o ctrlpanel.py

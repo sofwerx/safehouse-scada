@@ -48,15 +48,15 @@ class Ui_MainWindow(object):
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.positionBtn = QtWidgets.QPushButton(self.horizontalGroupBox)
-        self.positionBtn.setStyleSheet("background-color: rgb(136, 138, 133);")
+        self.positionBtn.setStyleSheet("background-color: rgb(186, 189, 182);")
         self.positionBtn.setObjectName("positionBtn")
         self.verticalLayout_4.addWidget(self.positionBtn)
         self.motorBtn = QtWidgets.QPushButton(self.horizontalGroupBox)
-        self.motorBtn.setStyleSheet("background-color: rgb(136, 138, 133);")
+        self.motorBtn.setStyleSheet("background-color: rgb(186, 189, 182);")
         self.motorBtn.setObjectName("motorBtn")
         self.verticalLayout_4.addWidget(self.motorBtn)
         self.triggerBtn = QtWidgets.QPushButton(self.horizontalGroupBox)
-        self.triggerBtn.setStyleSheet("background-color: rgb(136, 138, 133);")
+        self.triggerBtn.setStyleSheet("background-color: rgb(186, 189, 182);")
         self.triggerBtn.setObjectName("triggerBtn")
         self.verticalLayout_4.addWidget(self.triggerBtn)
         self.horizontalLayout.addLayout(self.verticalLayout_4)
@@ -85,8 +85,8 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.resetBtn.setFont(font)
         self.resetBtn.setStyleSheet("font: 11pt \"DejaVu Sans\";\n"
-"background-color: rgb(245, 121, 0);\n"
-"color: rgb(0, 0, 0);")
+            "background-color: rgb(245, 121, 0);\n"
+            "color: rgb(0, 0, 0);")
         self.resetBtn.setFlat(False)
         self.resetBtn.setObjectName("resetBtn")
         self.verticalLayout_2.addWidget(self.resetBtn)
@@ -98,11 +98,11 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.horizontalGroupBox.setTitle(_translate("MainWindow", "System Controls"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "System Control Panel"))
+        self.horizontalGroupBox.setTitle(_translate("MainWindow", "Manual Controls"))
         self.positionBtn.setText(_translate("MainWindow", " Drop Gun "))
         self.motorBtn.setText(_translate("MainWindow", " Start Motor"))
-        self.triggerBtn.setText(_translate("MainWindow", "Start Trigger"))
+        self.triggerBtn.setText(_translate("MainWindow", "Fire Bullets"))
         self.resetBtn.setText(_translate("MainWindow", "Reset All"))
 
 

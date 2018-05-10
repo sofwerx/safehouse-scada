@@ -1,5 +1,6 @@
-# Nerf Gun Documentation
-Various scripts for Nerf Gun setup in Safehouse
+# SCADA - Nerf Gun System
+This project uses an Allen-Bradley PLC to control the Automated Nerf Gun System that detects AK47 objects.
+This is the SCADA Lane implementaion of the Mad Jack project at SOFWERX.
 
 ## Tools
 * Rockwell Automation Software RSLogix 5000
@@ -11,3 +12,4 @@ Various scripts for Nerf Gun setup in Safehouse
 * RSLogix5000 Program Files
     * - Door and hallway sensors
     * - Nerfgun mechanism
+    

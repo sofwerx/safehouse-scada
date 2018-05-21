@@ -1,15 +1,25 @@
 # SCADA - Nerf Gun System
-This project uses an Allen-Bradley PLC to control the Automated Nerf Gun System that detects AK47 objects.
-This is the SCADA Lane implementaion of the Mad Jack project at SOFWERX.
+Using a PLC, a camera, and an AI computer trained with an AK-47 detection program, this project deploys a Sentry Nerf Gun and fires bullets upon positive object detection.
+See the [wiki](https://github.com/sofwerx/safehouse-scada/wiki) for all the details on this SCADA implementaion of the Mad Jack project.
 
-## Tools
-* Rockwell Automation Software RSLogix 5000
-* Pycomm library - connect to PLCs & r/w tags
+## The Prereqs
+Assuming you've configured the system detailed on the [wiki](https://github.com/sofwerx/safehouse-scada/wiki) page:
+* YOLO requires that you install [darknet](https://pjreddie.com/darknet/install/)
+* The python program needs to speak to the PLC, so [install the pycomm library](https://github.com/ruscito/pycomm)
 
-## Files
-* PLC to Elasticsearch Python App for sending logs to elastic search
-* rw-tags-plc - Python App for controlling the PLC through reading and writing global tags
-* RSLogix5000 Program Files
-    * - Door and hallway sensors
-    * - Nerfgun mechanism
-    
+## The Files
+* pyconnector.py - Python program that connects all pieces together
+* yolov2 - AK-47 Trained Program
+* RSLogix - Simple files to program the PLC
+
+## To Run The Programs
+* Start the Python program first. Open a new terminal and
+'''cd safehouse-scada 
+python pyconnector.py'''
+* To start the YOLO program, open a second terminal and 
+'''cd safehouse-scada/yolov2/
+ak47-detector
+'''
+
+## Thanks
+A special thanks to the one and only [bytemaster-0xff](https://github.com/bytemaster-0xff) for all the help in the project. Thanks in advance for any feedback as well.

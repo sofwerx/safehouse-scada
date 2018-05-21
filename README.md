@@ -13,13 +13,14 @@ Assuming you've configured the system detailed on the [wiki](https://github.com/
 * RSLogix - Simple files to program the PLC
 
 ## To Run The Programs
-* Start the Python program first. Open a new terminal and
-'''cd safehouse-scada 
-python pyconnector.py'''
-* To start the YOLO program, open a second terminal and 
-'''cd safehouse-scada/yolov2/
+* Start the Python program first. Open a new terminal and type below:
+```cd safehouse-scada 
+python pyconnector.py
+```
+* To start the YOLO program, open a second terminal and type below:
+```cd safehouse-scada/yolov2/
 ak47-detector
-'''
+```
 
 ## Thanks
 A special thanks to the one and only [bytemaster-0xff](https://github.com/bytemaster-0xff) for all the help in the project. Thanks in advance for any feedback as well.
